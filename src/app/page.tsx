@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { RecoilRoot } from "recoil";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <RecoilRoot>
-      <main className="flex min-h-screen flex-col items-center justify-start p-24">
-        Home
+    <main className="flex min-h-screen bg-dark flex-col items-center justify-start p-24">
+      Home
+      <Button asChild>
         <Link href="dashboard">Dashboard</Link>
-      </main>
-    </RecoilRoot>
+      </Button>
+    </main>
   );
 }
