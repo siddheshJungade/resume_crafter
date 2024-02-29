@@ -39,7 +39,7 @@ export const Navbar = () => {
     <nav className="p-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center font-bold">
             <Link href="/">
               ResumeCraft 
             </Link>
