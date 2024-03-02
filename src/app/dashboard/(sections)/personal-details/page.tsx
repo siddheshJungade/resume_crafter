@@ -2,10 +2,35 @@
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/ui/inputWithLabel";
 import { resumeDataState } from "@/recoil/atom";
-import { FormEvent } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import {useSetRecoilState } from "recoil";
+import { useRouter } from 'next/navigation'
+
+
+
+interface PersonalDetailsData {
+  [key: string]: string 
+}
+
+
 
 export default function PersonalDetails() {
+  const router = useRouter();
+  const [personalDetailsData, setPersonalDetailsData] = useState<PersonalDetailsData>(() => {
+    if(typeof window !== 'undefined') {
+      const saveData = sessionStorage.getItem("personalDetailsData");
+      return saveData ? JSON.parse(saveData) : null;
+    } else {
+      return null
+    }
+  })
+
+  useEffect(() => {
+    if(typeof window !== 'undefined') {
+      sessionStorage.setItem("personalDetailsData",JSON.stringify(personalDetailsData))
+    }
+  },[personalDetailsData])
+
   const inputs = [
     { name: "First Name", type: "text", placeholder: "Deo" },
     { name: "Last Name", type: "text", placeholder: "Tyson" },
@@ -20,7 +45,6 @@ export default function PersonalDetails() {
   ];
   
   const setResumeDataState = useSetRecoilState(resumeDataState)
-
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data: { [key: string]: any } = {}; 
@@ -29,17 +53,23 @@ export default function PersonalDetails() {
       data[name] = value;
     });
     setResumeDataState(data)
+    setPersonalDetailsData(data);
+    router.push('./education')
   };
 
   return (
-      <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
-        <div className="w-full h-full grid grid-cols-2  gap-3 mt-20">
+      <form className="w-1/2" onSubmit={onFormSubmit}>
+        <div className="w-full h-1/3 grid grid-cols-2  gap-3 mt-20">
           {inputs.map((input, index) => (
             <InputWithLabel
               key={index}
               name={input.name}
               type={input.type}
               placeholder={input.placeholder}
+              value={personalDetailsData ? personalDetailsData[input.name] : ""}
+              onChange={(e) => {
+                setPersonalDetailsData({ ...personalDetailsData, [input.name]: e.target.value });
+              }}
             />
           ))}
           <Button className="col-span-2" type="submit">
