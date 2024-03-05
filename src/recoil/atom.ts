@@ -1,6 +1,7 @@
+import { ResumeData } from "@/app/types/types";
 import { atom } from "recoil";
 
-export const resumeDataState = atom<Object | null >({
+export const resumeDataAtom = atom<ResumeData>({
     key: 'resumeDataState',
-    default: null
+    default: {}
 })
