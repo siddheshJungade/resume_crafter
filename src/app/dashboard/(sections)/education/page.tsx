@@ -9,20 +9,19 @@ import { useRecoilState } from "recoil";
 
 const CollageDetails = ({
   educationData,
-  setEducation,key
+  setEducation
 }: {
   educationData: EducationDetails;
   setEducation: React.Dispatch<React.SetStateAction<EducationDetails>>;
-  key:Number
 }) => {
   const inputs = [
     { name: "College/School Name", type: "text", placeholder: "Abc college" },
     { name: "Course", type: "text", placeholder: "B.Tech (Computer Science)" },
     { name: "Location", type: "text", placeholder: "pune, india" },
-    { name: "Year", type: "text", placeholder: "2019-2023" },
-  ];
+    { name: "Year", type: "text", placeholder: "2019-2023" }
+  ]
   return (
-    <div key={key.toString()} className="w-full  grid grid-cols-2 gap-3 mt-20">
+    <div  className="w-full  grid grid-cols-2 gap-3 mt-20">
       {inputs.map((input, index) => (
         <InputWithLabel
           key={index}
