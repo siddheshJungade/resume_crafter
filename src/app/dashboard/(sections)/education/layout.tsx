@@ -1,3 +1,4 @@
+'use-client'
 import { ReactNode } from "react";
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {

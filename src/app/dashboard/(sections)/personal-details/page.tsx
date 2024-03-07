@@ -2,10 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/ui/inputWithLabel";
 import { resumeDataAtom } from "@/recoil/atom";
-import { FormEvent, useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { FormEvent, useEffect,  } from "react";
+import { useRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
-import { PersonalDetailsData, ResumeData } from "@/app/types/types";
 
 
 
@@ -25,42 +24,12 @@ const inputs = [
 
 
 export default function PersonalDetails() {
+  const [resumeData, setResumeDataState] = useRecoilState(resumeDataAtom);
+  const {personalDetails} = resumeData
   const router = useRouter();
-  const [personalDetailsData, setPersonalDetailsData] =
-    useState<PersonalDetailsData>(() => {
-      if (typeof window !== "undefined") {
-        const saveData = sessionStorage.getItem("personalDetailsData");
-        return saveData ? JSON.parse(saveData) : null;
-      } else {
-        return null;
-      }
-    });
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem(
-        "personalDetailsData",
-        JSON.stringify(personalDetailsData)
-      );
-    }
-  }, [personalDetailsData]);
-
-
-  const setResumeDataState = useSetRecoilState(resumeDataAtom);
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data: { [key: string]: any } = {};
-    const formData = new FormData(e.currentTarget);
-    Array.from(formData).forEach(([name, value]) => {
-      data[name] = value;
-    });
-
-    let obj: ResumeData= {
-      personalDetails: data
-    };
-    
-    setResumeDataState(obj);
-    setPersonalDetailsData(data);
     router.push("./education");
   };
 
@@ -73,12 +42,12 @@ export default function PersonalDetails() {
             name={input.name}
             type={input.type}
             placeholder={input.placeholder}
-            value={personalDetailsData ? personalDetailsData[input.name] : ""}
+            value={personalDetails?.[input.name] ? personalDetails[input.name] : ''}
             onChange={(e) => {
-              setPersonalDetailsData({
-                ...personalDetailsData,
-                [input.name]: e.target.value,
-              });
+              const data = {...resumeData}
+              data.personalDetails = {...data.personalDetails}
+              data.personalDetails[input.name] = e.target.value
+              setResumeDataState(data)
             }}
           />
         ))}

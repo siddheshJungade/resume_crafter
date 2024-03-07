@@ -12,5 +12,5 @@ export type EducationDetails = {
 
 export interface ResumeData {
     personalDetails?: PersonalDetailsData,
-    educationDetails?: EducationDetails
+    educationDetails: EducationDetails[] 
 }
