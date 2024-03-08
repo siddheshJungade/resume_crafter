@@ -1,11 +1,12 @@
 import { Button } from "./button";
 
-export const ButtonCombo = () => {
+export const ButtonCombo = (props: {onBackClick?: () => void}) => {
   return (
     <div className="w-full grid grid-cols-2 gap-3 mt-20">
       <Button
         className="w-20 bg-blue-500 hover:bg-blue-700 justify-self-start"
-        type="submit"
+        type="button"
+        onClick={props.onBackClick}
       >
         Back
       </Button>

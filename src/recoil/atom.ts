@@ -10,7 +10,8 @@ const { persistAtom } = recoilPersist({ key: 'resumeData', storage: sessionStora
 export const resumeDataAtom = atom<ResumeData>({
     key: 'resumeDataState',
     default: {
-        educationDetails: [{}]
+        educationDetails: [{}],
+        experienceDetails: [{}]
     } , 
     effects_UNSTABLE: [persistAtom]
 })

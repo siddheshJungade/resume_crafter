@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label"
 
 
 type InputWithLabelProps = {
-    name: string;
+    name?: string;
     type: string;
     placeholder?: string;
     value?: string
