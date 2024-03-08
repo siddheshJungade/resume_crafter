@@ -8,8 +8,8 @@ import { FormEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { DeleteButton } from "@/components/ui/deleteButton";
 import { useRouter } from "next/navigation";
-import { DescriptionButton } from "@/components/ui/descpritionButton";
-import { Description } from "@/components/ui/descprition";
+import { DescriptionButton } from "@/components/ui/descriptionButton";
+import { Description } from "@/components/ui/description";
 
 const inputs = [
   { name: "Company", type: "text", placeholder: "Google" },
@@ -69,7 +69,7 @@ const ExperienceItem = ({
           onDeleteExperience(identifier);
         }}
       />
-      <div className="w-full  grid grid-cols-2 gap-3 mt-2">
+      <div className="w-full  grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
         {inputs.map((input, index) => (
           <InputWithLabel
             key={index}
