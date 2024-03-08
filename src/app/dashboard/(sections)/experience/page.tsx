@@ -27,12 +27,40 @@ const ExperienceItem = ({
   identifier: number;
   onDeleteExperience: (idx: number) => void;
 }) => {
-  const [experienceItem, setExperienceItem] = useState<ExperienceDetails>({});
+  let [experienceItem, setExperienceItem] = useState<ExperienceDetails>({
+    descriptions: [],
+  });
 
   useEffect(() => {
-    console.log('hello')
     onChange({ idx: identifier, experienceItem: experienceItem });
   }, [experienceItem]);
+
+  const handlerAddNewDescription = () => {
+    const data = { ...experienceItem };
+    if (Array.isArray(data.descriptions)) {
+      data.descriptions = [...data.descriptions];
+      data.descriptions.push("");
+    }
+    setExperienceItem(data);
+  };
+
+  const onRemoveDescription = (idx: number) => {
+    const data = { ...experienceItem };
+    if (Array.isArray(data.descriptions)) {
+      data.descriptions = [...data.descriptions];
+      data.descriptions.splice(idx, 1);
+    }
+    setExperienceItem(data);
+  };
+
+  const handlerDescriptionChange = (idx: number, text: string) => {
+    const data = { ...experienceItem };
+    if (Array.isArray(data.descriptions)) {
+      data.descriptions = [...data.descriptions];
+      data.descriptions[idx] = text;
+    }
+    setExperienceItem(data);
+  };
 
   return (
     <>
@@ -56,8 +84,23 @@ const ExperienceItem = ({
           />
         ))}
       </div>
-      <Description />
-      <DescriptionButton />
+      {Array.isArray(experienceItem.descriptions) &&
+        experienceItem?.descriptions?.map((description, idx) => {
+          return (
+            <Description
+              description={description}
+              key={idx}
+              onRemove={() => {
+                onRemoveDescription(idx);
+              }}
+              onTextChange={(e) => {
+                handlerDescriptionChange(idx, e.target.value);
+              }}
+            />
+          );
+        })}
+
+      <DescriptionButton onClick={handlerAddNewDescription} />
     </>
   );
 };
@@ -91,14 +134,12 @@ export default function Experience() {
     <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
       <div className="w-full  grid grid-cols-1 gap-3 mt-10">
         {experienceDetails?.map((data, index) => (
-          <>
-            <ExperienceItem
-              key={index}
-              identifier={index}
-              onDeleteExperience={onDeleteExperience}
-              onChange={onChange}
-            />
-          </>
+          <ExperienceItem
+            key={index}
+            identifier={index}
+            onDeleteExperience={onDeleteExperience}
+            onChange={onChange}
+          />
         ))}
         <Button
           type="button"
@@ -116,7 +157,7 @@ export default function Experience() {
 
       <ButtonCombo
         onBackClick={() => {
-          router.push("./personal-details");
+          router.push("./education");
         }}
       />
     </form>

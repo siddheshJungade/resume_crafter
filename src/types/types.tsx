@@ -18,7 +18,7 @@ export type ExperienceDetails = {
     Role?: String,
     Location?: string,
     Date?: string,
-    description?: string[] | string
+    descriptions?: string[] | string
 }
 
 
