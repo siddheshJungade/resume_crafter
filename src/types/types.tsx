@@ -14,11 +14,7 @@ export type EducationDetails = {
 
 
 export type ExperienceDetails = {
-    Company?: string,
-    Role?: String,
-    Location?: string,
-    Date?: string,
-    descriptions?: string[] | string
+    [key: string]: string | string[]
 }
 
 

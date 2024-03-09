@@ -22,14 +22,17 @@ const ExperienceItem = ({
   onChange,
   identifier,
   onDeleteExperience,
+  experience
 }: {
-  onChange: (props: { idx: number; experienceItem: ExperienceDetails }) => void;
+  onChange: (props: {
+    idx: number;
+    experienceItem: ExperienceDetails | undefined;
+  }) => void;
   identifier: number;
   onDeleteExperience: (idx: number) => void;
+  experience: ExperienceDetails
 }) => {
-  let [experienceItem, setExperienceItem] = useState<ExperienceDetails>({
-    descriptions: [],
-  });
+  let [experienceItem, setExperienceItem] = useState<ExperienceDetails>(experience);
 
   useEffect(() => {
     onChange({ idx: identifier, experienceItem: experienceItem });
@@ -37,6 +40,7 @@ const ExperienceItem = ({
 
   const handlerAddNewDescription = () => {
     const data = { ...experienceItem };
+    console.log(data)
     if (Array.isArray(data.descriptions)) {
       data.descriptions = [...data.descriptions];
       data.descriptions.push("");
@@ -84,7 +88,7 @@ const ExperienceItem = ({
           />
         ))}
       </div>
-      {Array.isArray(experienceItem.descriptions) &&
+      {Array.isArray(experienceItem?.descriptions) &&
         experienceItem?.descriptions?.map((description, idx) => {
           return (
             <Description
@@ -117,11 +121,13 @@ export default function Experience() {
 
   const onChange = (props: {
     idx: number;
-    experienceItem: ExperienceDetails;
+    experienceItem: ExperienceDetails | undefined;
   }) => {
-    const data = [...experienceDetails];
-    data[props.idx] = props.experienceItem;
-    setResumeDataState({ ...resumeData, experienceDetails: data });
+    if (props.experienceItem !== undefined) {
+      const data = [...experienceDetails];
+      data[props.idx] = props.experienceItem;
+      setResumeDataState({ ...resumeData, experienceDetails: data });
+    }
   };
 
   const onDeleteExperience = (idx: number) => {
@@ -133,9 +139,10 @@ export default function Experience() {
   return (
     <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
       <div className="w-full  grid grid-cols-1 gap-3 mt-10">
-        {experienceDetails?.map((data, index) => (
+        {experienceDetails?.map((experience, index) => (
           <ExperienceItem
             key={index}
+            experience={experience}
             identifier={index}
             onDeleteExperience={onDeleteExperience}
             onChange={onChange}
@@ -147,7 +154,10 @@ export default function Experience() {
           disabled={experienceDetails?.length === 2 || false}
           onClick={() => {
             const data = [...experienceDetails];
-            data.push({});
+            data.push({
+              descriptions: [""],
+            });
+            console.log(data)
             setResumeDataState({ ...resumeData, experienceDetails: data });
           }}
         >

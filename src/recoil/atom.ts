@@ -11,7 +11,9 @@ export const resumeDataAtom = atom<ResumeData>({
     key: 'resumeDataState',
     default: {
         educationDetails: [{}],
-        experienceDetails: [{}]
-    } , 
+        experienceDetails: [{
+            descriptions: [""]
+        }]
+    },
     effects_UNSTABLE: [persistAtom]
 })
