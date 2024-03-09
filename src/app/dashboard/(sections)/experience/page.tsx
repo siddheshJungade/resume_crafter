@@ -22,7 +22,7 @@ const ExperienceItem = ({
   onChange,
   identifier,
   onDeleteExperience,
-  experience
+  experience,
 }: {
   onChange: (props: {
     idx: number;
@@ -30,9 +30,10 @@ const ExperienceItem = ({
   }) => void;
   identifier: number;
   onDeleteExperience: (idx: number) => void;
-  experience: ExperienceDetails
+  experience: ExperienceDetails;
 }) => {
-  let [experienceItem, setExperienceItem] = useState<ExperienceDetails>(experience);
+  let [experienceItem, setExperienceItem] =
+    useState<ExperienceDetails>(experience);
 
   useEffect(() => {
     onChange({ idx: identifier, experienceItem: experienceItem });
@@ -40,7 +41,7 @@ const ExperienceItem = ({
 
   const handlerAddNewDescription = () => {
     const data = { ...experienceItem };
-    console.log(data)
+    console.log(data);
     if (Array.isArray(data.descriptions)) {
       data.descriptions = [...data.descriptions];
       data.descriptions.push("");
@@ -78,11 +79,12 @@ const ExperienceItem = ({
           <InputWithLabel
             key={index}
             name={input.name}
+            value={experience?.[input.name as keyof ExperienceDetails]?.toString() || ''}
             type={input.type}
             placeholder={input.placeholder}
             onChange={(e) => {
               const data = { ...experienceItem };
-              data[input.name as keyof ExperienceDetails] = e.target.value;
+              data[input.name as keyof ExperienceDetails] = e.target.value as string;
               setExperienceItem(data);
             }}
           />
@@ -157,7 +159,7 @@ export default function Experience() {
             data.push({
               descriptions: [""],
             });
-            console.log(data)
+            console.log(data);
             setResumeDataState({ ...resumeData, experienceDetails: data });
           }}
         >

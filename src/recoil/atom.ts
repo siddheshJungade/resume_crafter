@@ -13,6 +13,13 @@ export const resumeDataAtom = atom<ResumeData>({
         educationDetails: [{}],
         experienceDetails: [{
             descriptions: [""]
+        }],
+        projectDetails: [{
+            descriptions: [""]
+
+        }],
+        achievementDetails: [{
+            descriptions: [""]
         }]
     },
     effects_UNSTABLE: [persistAtom]

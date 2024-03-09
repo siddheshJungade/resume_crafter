@@ -19,7 +19,7 @@ export const Description = (props: {description:string,onRemove?: () => void,onT
         className="bg-red-700 col-span-1/2 justify-self-end hover:bg-red-500"
         onClick={props.onRemove}
       >
-        <MdRemove className="dark:text-white" />
+        Del
       </Button>
     </div>
   );
