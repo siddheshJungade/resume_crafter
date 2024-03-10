@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { RecoilRoot } from "recoil";
 
 export default function Home() {
   return (

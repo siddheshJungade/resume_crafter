@@ -30,12 +30,18 @@ export type AchievementDetails = {
     descriptions?: string[] | string
 }
 
+export type SkillDetails = {
+    skill_category?: string,
+    skills?: string
+}
+
 export interface ResumeData {
     personalDetails?: PersonalDetailsData,
     educationDetails: EducationDetails[] 
     experienceDetails: ExperienceDetails[]
     projectDetails: ProjectDetails[],
     achievementDetails: AchievementDetails[]
+    skillDetails: SkillDetails[]
 
 }
 

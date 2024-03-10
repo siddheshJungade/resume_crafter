@@ -20,7 +20,8 @@ export const resumeDataAtom = atom<ResumeData>({
         }],
         achievementDetails: [{
             descriptions: [""]
-        }]
+        }],
+        skillDetails: [{}]
     },
     effects_UNSTABLE: [persistAtom]
 })
