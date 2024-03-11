@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { Label } from "./ui/label";
 import ThemeSwitch from "./ui/themeSwitch";
+import { Button } from "./ui/button";
 
 export const SubNavbar = () => {
   const sections = [
@@ -40,18 +41,21 @@ export const Navbar = () => {
     <nav className="p-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
-          <div className="flex items-center font-bold">
+          <div className="flex items-center font-bold text-2xl">
             <Link href="/">ResumeCraft</Link>
           </div>
           <div className="hidden md:block">
-            <ul className="flex space-x-10">
+            <ul className="flex  items-center space-x-10">
               <li>
-                <div className="flex items-center space-x-2" suppressHydrationWarning={true}>
+                <div
+                  className="flex items-center space-x-2"
+                  suppressHydrationWarning={true}
+                >
                   <ThemeSwitch />
                 </div>
               </li>
               <li>
-                <Link href="/">Reset</Link>
+              <Button className="rounded-none" onClick={() => window.open("./feedback", "_blank")}>Drop Review</Button>
               </li>
             </ul>
           </div>

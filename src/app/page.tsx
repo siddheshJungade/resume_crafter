@@ -1,14 +1,7 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Landing } from "@/components/landing/landing";
 
 export default function Home() {
   return (
-
-    <main className="flex flex-col items-center justify-start p-24">
-      Home
-      <Button asChild>
-        <Link href="dashboard">Dashboard</Link>
-      </Button>
-    </main>
+      <Landing />
   );
 }
