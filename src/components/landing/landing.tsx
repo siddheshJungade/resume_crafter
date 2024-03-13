@@ -34,7 +34,7 @@ export const Landing: FunctionComponent = () => {
           </div>
           <a href="https://twitter.com/siddheshjungade" target="_target">
             <div className="relative text-[1.875rem] inline-block max-w-full text-gray mq450:text-[1.125rem] mq900:text-[1.5rem]">
-              <span>{`Develope By: `}</span>
+              <span>Developed By:</span>
               <b className="text-blue-500">@siddheshjungade</b>
             </div>
           </a>
