@@ -25,3 +25,9 @@ export const resumeDataAtom = atom<ResumeData>({
     },
     effects_UNSTABLE: [persistAtom]
 })
+
+
+export const isAPIRunningAtom = atom<boolean>({
+    key: 'isAPIRunning',
+    default: false 
+})

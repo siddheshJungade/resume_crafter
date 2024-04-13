@@ -8,13 +8,19 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./button";
-import { Label } from "@radix-ui/react-label";
-import { Input } from "./input";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { useRecoilState } from "recoil";
+import { isAPIRunningAtom } from "@/recoil/atom";
 
 export const ModalComponent = (props: {
   showModal: boolean;
   setShowModal: (data: boolean) => void;
+  postCreateResumeHandler?: () => void;
 }) => {
+
+  const [isLoading,setIsLoading ] = useRecoilState(isAPIRunningAtom)
+  
+
   return (
     <Dialog open={props.showModal} onOpenChange={props.setShowModal}>
       <DialogContent className="sm:max-w-[425px]">
@@ -26,8 +32,10 @@ export const ModalComponent = (props: {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit" onClick={() => alert("Run API")}>
-            Donate & Create
+          <Button type="submit" onClick={props?.postCreateResumeHandler} disabled={isLoading}>
+            {
+              isLoading && <> <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> Please Wait </> || "Create"
+            }
           </Button>
         </DialogFooter>
       </DialogContent>

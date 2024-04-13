@@ -3,7 +3,7 @@ import { SkillDetails } from "@/types/types";
 import { Button } from "@/components/ui/button";
 import { ButtonCombo } from "@/components/ui/buttonsCombo";
 import { InputWithLabel } from "@/components/ui/inputWithLabel";
-import { resumeDataAtom } from "@/recoil/atom";
+import { isAPIRunningAtom, resumeDataAtom } from "@/recoil/atom";
 import { FormEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { DeleteButton } from "@/components/ui/deleteButton";
@@ -89,11 +89,34 @@ export default function Skills() {
     setResumeDataState({ ...resumeData, skillDetails: data });
   };
 
+  const [isLoading,setIsLoading ] = useRecoilState(isAPIRunningAtom)
   const onDeleteSkill = (idx: number) => {
     const data = [...skillDetails];
     data.splice(idx, 1);
     setResumeDataState({ ...resumeData, skillDetails: data });
   };
+
+const postCreateResumeHandler = async () => {
+  try {
+    setIsLoading(true);
+    console.log(process.env.API_URL)
+    const response = await fetch(`${process.env.API_URL}`,{
+      method: 'POST',
+      body: JSON.stringify(resumeData) })
+    if(response.ok) {
+      console.log(response.ok)
+      console.log(response)
+      setShowModal(false)
+    }
+  } catch(e) {
+    console.log(e)
+
+  } finally {
+    setIsLoading(false);
+  }
+}
+
+  
 
   return (
     <>
@@ -126,7 +149,9 @@ export default function Skills() {
           }}
         />
       </form>
-      <ModalComponent showModal={showModal} setShowModal={setShowModal} />
+      <ModalComponent showModal={showModal} setShowModal={setShowModal} postCreateResumeHandler={postCreateResumeHandler} />
+
+      
     </>
   );
 }
