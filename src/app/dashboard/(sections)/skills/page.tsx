@@ -9,6 +9,8 @@ import { useRecoilState } from "recoil";
 import { DeleteButton } from "@/components/ui/deleteButton";
 import { useRouter } from "next/navigation";
 import { ModalComponent } from "@/components/ui/modal";
+import API_URL from "@/config/server.config";
+import { saveAs } from 'file-saver';
 
 const inputs = [
   { name: "Skill Category", type: "text", placeholder: "Technology" },
@@ -89,34 +91,38 @@ export default function Skills() {
     setResumeDataState({ ...resumeData, skillDetails: data });
   };
 
-  const [isLoading,setIsLoading ] = useRecoilState(isAPIRunningAtom)
+  const [isLoading, setIsLoading] = useRecoilState(isAPIRunningAtom);
   const onDeleteSkill = (idx: number) => {
     const data = [...skillDetails];
     data.splice(idx, 1);
     setResumeDataState({ ...resumeData, skillDetails: data });
   };
 
-const postCreateResumeHandler = async () => {
-  try {
-    setIsLoading(true);
-    console.log(process.env.API_URL)
-    const response = await fetch(`${process.env.API_URL}`,{
-      method: 'POST',
-      body: JSON.stringify(resumeData) })
-    if(response.ok) {
-      console.log(response.ok)
-      console.log(response)
-      setShowModal(false)
+  const postCreateResumeHandler = async () => {
+    try {
+      setIsLoading(true);
+      const response: any = await fetch(`${API_URL}/pdf/resume`, {
+        method: "POST",
+
+        body: JSON.stringify({
+          resumeDataState: resumeData,
+        }),
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const blob = await response.blob();
+        saveAs(blob, `${resumeData?.personalDetails?.["First Name"]} ${resumeData?.personalDetails?.["Last Name"]} Resume.pdf`);
+        setShowModal(false);
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
     }
-  } catch(e) {
-    console.log(e)
-
-  } finally {
-    setIsLoading(false);
-  }
-}
-
-  
+  };
 
   return (
     <>
@@ -149,9 +155,11 @@ const postCreateResumeHandler = async () => {
           }}
         />
       </form>
-      <ModalComponent showModal={showModal} setShowModal={setShowModal} postCreateResumeHandler={postCreateResumeHandler} />
-
-      
+      <ModalComponent
+        showModal={showModal}
+        setShowModal={setShowModal}
+        postCreateResumeHandler={postCreateResumeHandler}
+      />
     </>
   );
 }

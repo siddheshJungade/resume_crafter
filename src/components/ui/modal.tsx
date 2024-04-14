@@ -32,7 +32,7 @@ export const ModalComponent = (props: {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit" onClick={props?.postCreateResumeHandler} disabled={isLoading}>
+          <Button type="submit" onClick={props?.postCreateResumeHandler} disabled={isLoading} >
             {
               isLoading && <> <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> Please Wait </> || "Create"
             }
