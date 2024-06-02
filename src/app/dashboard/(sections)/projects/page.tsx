@@ -166,7 +166,7 @@ export default function Project() {
 
       <ButtonCombo
         onBackClick={() => {
-          router.push("./achievements");
+          router.push("./experience");
         }}
       />
     </form>
