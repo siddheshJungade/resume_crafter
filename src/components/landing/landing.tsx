@@ -7,16 +7,16 @@ import { useRouter } from "next/navigation";
 export const Landing: FunctionComponent = () => {
   const router = useRouter();
   return (
-    <div className="w-full relative bg-white overflow-hidden flex flex-col xl:flex-row items-center  justify-start px-[6.25rem] box-border  tracking-[normal] text-left text-[6.706rem] text-black font-poppins">
+    <div className="w-full px-10 relative bg-white flex flex-col xl:flex-row items-center  px-4xl justify-start box-border text-center 2xl:text-left text-black font-poppins">
       <div className="w-full flex flex-col items-start justify-start">
-        <div className="self-stretch flex flex-col items-center lg:items-start justify-start">
-          <div className="self-stretch flex flex-col items-center lg:items-start justify-start ">
+        <div className="self-stretch flex flex-col items-center gap-3 lg:items-start justify-start">
+          <div className="self-stretch flex flex-col items-center xl:items-start justify-start ">
             <div className="self-stretch flex flex-col items-center my-20 md:my-6">
-              <div className="text-6xl md:text-9xl md:w-full flex flex-row text-center lg:text-start">
+              <div className=  "self-center text-5xl xl:text-9xl w-full flex flex-row xl:text-start">
                 <span className="font-semibold">Resume</span>
                 <span className="font-thin">CRAFT</span>
               </div>
-              <div className="self-center text-center lg:text-start text-xl mt-20 lg:mt-0">
+              <div className="self-start w-full text-center xl:text-start text-xl mt-20 lg:mt-0">
                 Craft professional resumes effortlessly with our online resume
                 builder featuring the exclusive Jake Ryan template – stand out
                 from the crowd and land your dream job with style
@@ -30,7 +30,7 @@ export const Landing: FunctionComponent = () => {
               </div>
             </button>
             <a href="https://twitter.com/siddheshjungade" target="_target">
-            <div className="relative text-3xl text-center lg:text-star inline-block text-gray">
+            <div className="relative text-3xl text-center xl:text-start inline-block text-gray mt-9 ">
               <span className="inline-block">Developed By </span>
               <b className="text-blue-500"> @siddheshjungade</b>
             </div>
@@ -40,7 +40,7 @@ export const Landing: FunctionComponent = () => {
         </div>
       </div>
       <Image
-        className="my-20 relative rounded object-cover max-w-full border-2"
+        className="my-10 relative rounded object-cover max-w-full border-2"
         loading="lazy"
         alt=""
         src={image}
