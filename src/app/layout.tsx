@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Resume Crafter",
   description: "Created by Siddhesh Jungade",
+  icons: {
+    icon: '/favicon.png'
+  },
 };
 
 export default function RootLayout({
