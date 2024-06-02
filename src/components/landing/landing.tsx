@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export const Landing: FunctionComponent = () => {
   const router = useRouter();
   return (
-    <div className="w-full relative bg-white overflow-hidden flex  flex-col xl:flex-row items-center  justify-start px-[6.25rem] box-border gap-[0rem_7.125rem] tracking-[normal] text-left text-[6.706rem] text-black font-poppins mq1350:pl-[3.125rem] mq1350:pr-[3.125rem] mq1350:box-border mq1725:flex-wrap mq450:gap-[0rem_1.75rem] mq900:gap-[0rem_3.563rem] mq900:pl-[1.563rem] mq900:pr-[1.563rem] mq900:box-border">
+    <div className="w-full relative bg-white overflow-hidden flex flex-col xl:flex-row items-center  justify-start px-[6.25rem] box-border  tracking-[normal] text-left text-[6.706rem] text-black font-poppins">
       <div className="w-full flex flex-col items-start justify-start">
         <div className="self-stretch flex flex-col items-center lg:items-start justify-start">
           <div className="self-stretch flex flex-col items-center lg:items-start justify-start ">
@@ -29,13 +29,14 @@ export const Landing: FunctionComponent = () => {
                 Create Now
               </div>
             </button>
-          </div>
-          <a href="https://twitter.com/siddheshjungade" target="_target">
+            <a href="https://twitter.com/siddheshjungade" target="_target">
             <div className="relative text-3xl text-center lg:text-star inline-block text-gray">
               <span className="inline-block">Developed By </span>
-              <b className="text-blue-500">@siddheshjungade</b>
+              <b className="text-blue-500"> @siddheshjungade</b>
             </div>
           </a>
+          </div>
+
         </div>
       </div>
       <Image

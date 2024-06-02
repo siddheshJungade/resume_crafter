@@ -37,13 +37,15 @@ const CollageDetails = ({
 
   return (
     <>
-      <div className="w-full  grid sm:grid-cols-2 gap-3 mt-10">
-      <DeleteButton onClick={()=> {
-        onDeleteCollage(identifier)
-      }}/>
+    <DeleteButton
+          onClick={() => {
+            onDeleteCollage(identifier);
+          }}
+        />
+      <div className="w-full grid sm:grid-cols-2  items-center gap-3 mt-10">
         {inputs.map((input, index) => (
           <InputWithLabel
-            key={index}
+          key={index}
             name={input.name}
             type={input.type}
             placeholder={input.placeholder}
@@ -53,10 +55,9 @@ const CollageDetails = ({
               obj[input.name] = e.target.value;
               onChangeCollageData({ idx: identifier, collageObj: obj });
             }}
-          />
-        ))}
+            />
+          ))}
       </div>
-
     </>
   );
 };
@@ -83,17 +84,15 @@ export default function Education() {
     setResumeDataState({ ...resumeData, educationDetails: data });
   };
 
-
-  const onDeleteCollage = (idx:number) => {
-      const data = [...educationDetails]
-      data.splice(idx,1)
-      setResumeDataState({ ...resumeData, educationDetails: data });
-  }
+  const onDeleteCollage = (idx: number) => {
+    const data = [...educationDetails];
+    data.splice(idx, 1);
+    setResumeDataState({ ...resumeData, educationDetails: data });
+  };
 
   return (
     <form className="w-full px-6 md:w-1/2 h-full" onSubmit={onFormSubmit}>
       <div className="w-full  grid grid-cols-1 gap-3 mt-10">
-
         {educationDetails.map((data, index) => (
           <>
             <CollageDetails
@@ -105,7 +104,7 @@ export default function Education() {
             />
           </>
         ))}
-                <Button
+        <Button
           type="button"
           className="w-full md:w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700"
           disabled={educationDetails?.length === 2 || false}
@@ -119,9 +118,11 @@ export default function Education() {
         </Button>
       </div>
 
-      <ButtonCombo  onBackClick={() => {
-          router.push('./personal-details')
-      }}/>
+      <ButtonCombo
+        onBackClick={() => {
+          router.push("./personal-details");
+        }}
+      />
     </form>
   );
 }
