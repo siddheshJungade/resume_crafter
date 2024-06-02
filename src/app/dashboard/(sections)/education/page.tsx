@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 const inputs = [
   { name: "College/School Name", type: "text", placeholder: "Abc college" },
   { name: "Course", type: "text", placeholder: "B.Tech (Computer Science)" },
-  { name: "Location", type: "text", placeholder: "pune, india" },
+  { name: "Location", type: "text", placeholder: "Pune, india" },
   { name: "Year", type: "text", placeholder: "2019-2023" },
 ];
 
@@ -37,7 +37,10 @@ const CollageDetails = ({
 
   return (
     <>
-      <div className="w-full  grid grid-cols-2 gap-3 mt-10">
+      <div className="w-full  grid sm:grid-cols-2 gap-3 mt-10">
+      <DeleteButton onClick={()=> {
+        onDeleteCollage(identifier)
+      }}/>
         {inputs.map((input, index) => (
           <InputWithLabel
             key={index}
@@ -53,9 +56,7 @@ const CollageDetails = ({
           />
         ))}
       </div>
-      <DeleteButton onClick={()=> {
-        onDeleteCollage(identifier)
-      }}/>
+
     </>
   );
 };
@@ -90,20 +91,9 @@ export default function Education() {
   }
 
   return (
-    <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
+    <form className="w-full px-6 md:w-1/2 h-full" onSubmit={onFormSubmit}>
       <div className="w-full  grid grid-cols-1 gap-3 mt-10">
-        <Button
-          type="button"
-          className="w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700"
-          disabled={educationDetails?.length === 2 || false}
-          onClick={() => {
-            const data = [...educationDetails];
-            data.push({});
-            setResumeDataState({ ...resumeData, educationDetails: data });
-          }}
-        >
-          + Add Collage
-        </Button>
+
         {educationDetails.map((data, index) => (
           <>
             <CollageDetails
@@ -115,6 +105,18 @@ export default function Education() {
             />
           </>
         ))}
+                <Button
+          type="button"
+          className="w-full md:w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700"
+          disabled={educationDetails?.length === 2 || false}
+          onClick={() => {
+            const data = [...educationDetails];
+            data.push({});
+            setResumeDataState({ ...resumeData, educationDetails: data });
+          }}
+        >
+          + Add Collage
+        </Button>
       </div>
 
       <ButtonCombo  onBackClick={() => {

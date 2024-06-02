@@ -12,7 +12,7 @@ import { DescriptionButton } from "@/components/ui/descriptionButton";
 import { Description } from "@/components/ui/description";
 
 const inputs = [
-  { name: "Achievements", type: "text", placeholder: "CLOUD Pro" },
+  { name: "Achievements", type: "text", placeholder: "AWS cloud certification name" },
 ];
 
 const AchievementItem = ({
@@ -140,7 +140,7 @@ export default function Achievements() {
   };
 
   return (
-    <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
+    <form className="w-full px-6 sm:w-1/2 h-full" onSubmit={onFormSubmit}>
       <div className="w-full  grid grid-cols-1 gap-3 mt-10">
         {achievementDetails?.map((achievement, index) => (
           <AchievementItem
@@ -153,7 +153,7 @@ export default function Achievements() {
         ))}
         <Button
           type="button"
-          className="w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700 mt-5"
+          className="w-full md:w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700 mt-5"
           disabled={achievementDetails?.length === 2 || false}
           onClick={() => {
             const data = [...achievementDetails];

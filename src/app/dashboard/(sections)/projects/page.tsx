@@ -14,7 +14,7 @@ import { Description } from "@/components/ui/description";
 const inputs = [
   { name: "Project Name", type: "text", placeholder: "Resume Crafter" },
   { name: "Tech", type: "text", placeholder: "Software Developer" },
-  { name: "Link", type: "url", placeholder: "pune, india" },
+  { name: "Link", type: "url", placeholder: "https://siddheshjungade.dev" },
 ];
 
 const ProjectItem = ({
@@ -72,7 +72,7 @@ const ProjectItem = ({
           onDeleteExperience(identifier);
         }}
       />
-      <div className="w-full  grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+      <div className="w-full grid md:grid-cols-2 gap-3 mt-2">
         {inputs.map((input, index) => (
           <InputWithLabel
             key={index}
@@ -137,7 +137,7 @@ export default function Project() {
   };
 
   return (
-    <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
+    <form className="w-full px-6 md:w-1/2 h-full" onSubmit={onFormSubmit}>
       <div className="w-full  grid grid-cols-1 gap-3 mt-10">
         {projectDetails?.map((project, index) => (
           <ProjectItem
@@ -150,7 +150,7 @@ export default function Project() {
         ))}
         <Button
           type="button"
-          className="w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700 mt-5"
+          className="w-full md:w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700 mt-5"
           disabled={projectDetails?.length === 2 || false}
           onClick={() => {
             const data = [...projectDetails];

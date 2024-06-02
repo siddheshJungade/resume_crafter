@@ -23,7 +23,7 @@ export const ModalComponent = (props: {
 
   return (
     <Dialog open={props.showModal} onOpenChange={props.setShowModal}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="mx-2">
         <DialogHeader>
           <DialogTitle>Let's Craft Your Resume</DialogTitle>
           <DialogDescription>

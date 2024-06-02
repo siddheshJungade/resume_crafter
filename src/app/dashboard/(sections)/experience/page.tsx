@@ -14,7 +14,7 @@ import { Description } from "@/components/ui/description";
 const inputs = [
   { name: "Company", type: "text", placeholder: "Google" },
   { name: "Role", type: "text", placeholder: "Software Developer" },
-  { name: "Location", type: "text", placeholder: "pune, india" },
+  { name: "Location", type: "text", placeholder: "Pune, india" },
   { name: "Date", type: "text", placeholder: "2019-2023" },
 ];
 
@@ -74,7 +74,7 @@ const ExperienceItem = ({
           onDeleteExperience(identifier);
         }}
       />
-      <div className="w-full  grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+      <div className="w-full  grid  md:grid-cols-2 gap-3 mt-2">
         {inputs.map((input, index) => (
           <InputWithLabel
             key={index}
@@ -139,7 +139,7 @@ export default function Experience() {
   };
 
   return (
-    <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
+    <form className="w-full px-6 sm:w-1/2  h-full" onSubmit={onFormSubmit}>
       <div className="w-full  grid grid-cols-1 gap-3 mt-10">
         {experienceDetails?.map((experience, index) => (
           <ExperienceItem
@@ -152,7 +152,7 @@ export default function Experience() {
         ))}
         <Button
           type="button"
-          className="w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700 mt-5"
+          className="w-full md:w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700 mt-5"
           disabled={experienceDetails?.length === 2 || false}
           onClick={() => {
             const data = [...experienceDetails];

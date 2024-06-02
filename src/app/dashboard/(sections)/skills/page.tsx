@@ -10,7 +10,7 @@ import { DeleteButton } from "@/components/ui/deleteButton";
 import { useRouter } from "next/navigation";
 import { ModalComponent } from "@/components/ui/modal";
 import API_URL from "@/config/server.config";
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
 
 const inputs = [
   { name: "Skill Category", type: "text", placeholder: "Technology" },
@@ -114,7 +114,10 @@ export default function Skills() {
       });
       if (response.ok) {
         const blob = await response.blob();
-        saveAs(blob, `${resumeData?.personalDetails?.["First Name"]} ${resumeData?.personalDetails?.["Last Name"]} Resume.pdf`);
+        saveAs(
+          blob,
+          `${resumeData?.personalDetails?.["First Name"]} ${resumeData?.personalDetails?.["Last Name"]} Resume.pdf`
+        );
         setShowModal(false);
       }
     } catch (e) {
@@ -126,19 +129,8 @@ export default function Skills() {
 
   return (
     <>
-      <form className="w-1/2 h-full" onSubmit={onFormSubmit}>
+      <form className="w-full sm:w-1/2 px-6 h-full" onSubmit={onFormSubmit}>
         <div className="w-full  grid grid-cols-1 gap-3 mt-10">
-          <Button
-            type="button"
-            className="w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700"
-            onClick={() => {
-              const data = [...skillDetails];
-              data.push({});
-              setResumeDataState({ ...resumeData, skillDetails: data });
-            }}
-          >
-            + Add
-          </Button>
           {skillDetails?.map((data, index) => (
             <SkillItem
               key={index}
@@ -148,6 +140,18 @@ export default function Skills() {
               onDeleteSkill={onDeleteSkill}
             />
           ))}
+
+          <Button
+            type="button"
+            className="w-full sm:w-1/5 justify-self-end dark:bg-yellow-500 dark:hover:bg-yellow-700"
+            onClick={() => {
+              const data = [...skillDetails];
+              data.push({});
+              setResumeDataState({ ...resumeData, skillDetails: data });
+            }}
+          >
+            + Add
+          </Button>
         </div>
         <ButtonCombo
           onBackClick={() => {

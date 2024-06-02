@@ -34,8 +34,8 @@ export default function PersonalDetails() {
   };
 
   return (
-    <form className="w-1/2" onSubmit={onFormSubmit}>
-      <div className="w-full h-1/3 grid grid-cols-2  gap-3 mt-20">
+    <form className="w-full sm:w-1/2 px-6" onSubmit={onFormSubmit}>
+      <div className="w-full h-1/3 grid  grid-cols-1 md:grid-cols-2  gap-3 mt-20">
         {inputs.map((input, index) => (
           <InputWithLabel
             key={index}
@@ -51,7 +51,7 @@ export default function PersonalDetails() {
             }}
           />
         ))}
-        <Button className="col-span-2" type="submit">
+        <Button className="grid-cols-1 md:col-span-2" type="submit">
           Save
         </Button>
       </div>
